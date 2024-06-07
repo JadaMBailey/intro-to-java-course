@@ -44,7 +44,7 @@ public class CarTest extends ClassExerciseTest {
     public void testCarObjectHasValidSetColourMethod(Car car, String make, String model, String colour, int year) {
         String newColour = "black";
         car.setColour(newColour);
-        assertEquals(newColour, car.getColour());
+        assertEquals(newColour, car.getColor());
     }
 
     @ParameterizedTest
