@@ -13,7 +13,7 @@ public class CollectionsExercises {
         //  - invoke the method element() on the list and print the result on the screen
         //  - return the list
         LinkedList<Integer> randomX = new LinkedList<>();
-        randomX.add(4);
+        randomX.add(4); 
         System.out.print(randomX.size());
         randomX.add(5);
         randomX.add(6);
