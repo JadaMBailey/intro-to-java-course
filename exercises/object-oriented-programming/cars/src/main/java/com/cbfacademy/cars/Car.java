@@ -17,6 +17,9 @@ public Car(String make, String model,  String colour, int year){
     this.year = year;
 }
 
+// int random[] = new int[10];
+// random[10].add() = 12; //- set above , out of bound of variable limit
+
 public String getMake(){
     return this.make;
 }
@@ -39,6 +42,7 @@ this.colour = colour;
 
 public String getDetails(){
     return "Car Details" + this.make + this.model + this.colour + this.year;
+
 }
 // Car volvoCar = new Car("Volvo", "V40", 2012, "blue");
 // Car porscheCar = new Car("Porsche", "Panamera", 2009, "red");
