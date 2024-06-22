@@ -6,7 +6,32 @@ import java.util.Map;
 
 public class FlowControlExercises {
 
-    public List<String> fizzBuzz(List<Integer> numbers) {
+
+    public  List<String> fizzBuzz(List<Integer> numbers) {
+        List<String> result = new ArrayList<String>();
+        // abstract class on the left (List)
+        // I am storing all variables in 'result' variable
+
+        for(int i = 0; i < numbers.size(); i++) {
+
+        if (numbers.get(i) % 5 == 0 && numbers.get(i) % 3 ==0){
+            result.add("FizzBuzz");
+
+        } else if (numbers.get(i) % 3 == 0){
+            // get() is used instead of [] because of collection Framework (it is not an Array)
+            result.add("Fizz"); 
+
+        } else if (numbers.get(i) % 5 == 0){
+            result.add("Buzz");
+
+        }else {
+                result.add(numbers.get(i).toString());
+            }
+            
+        }
+        return result;
+       // throw new RuntimeException("Not implemented");
+
         // TODO - Implement this method such that
         //  it creates a list where for each element of the input list ${numbers}
         //  - if the ${element} is divisible by 3, it adds “Fizz” to the list
@@ -14,7 +39,7 @@ public class FlowControlExercises {
         //  - if the ${element} is divisible by both 3 and 5, it adds “FizzBuzz” to the list
         //  - it adds the element to the list in any other case
         //  - it returns the constructed list
-        throw new RuntimeException("Not implemented");
+        
     }
 
     public String whichMonth(Integer number) {
@@ -22,6 +47,7 @@ public class FlowControlExercises {
         //  - it returns the month corresponding to the input ${number}
         //  - if the ${number} is invalid, the method should return "Invalid month number"
         throw new RuntimeException("Not implemented");
+        // Andrew said to use Switch statement
     }
 
     public Map<String, Integer> sumOfOddsAndSumOfEvens() {

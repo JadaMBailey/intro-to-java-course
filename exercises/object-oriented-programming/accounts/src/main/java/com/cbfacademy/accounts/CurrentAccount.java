@@ -11,6 +11,11 @@ public class CurrentAccount extends Account{
        this.overdraftLimit = overdraftLimit;
     }
 
+    public CurrentAccount(int accountNumber,double balance){
+        super(accountNumber, balance);
+
+    }
+    
     public double getOverdraftLimit(){
         return this.overdraftLimit;
     }
