@@ -13,18 +13,17 @@ public class Client {
    private String lastN;
    private String userName;
    private int passcode;
- 
-   
-   public List <Account> accountsAll;
+   private List <Account> accountToUser;
 
-   public Client(String firstN, String lastN, String userName, int passcode, List<Account> accountsAll) {
+   public Client(String firstN, String lastN, String userName, int passcode) {
       this.firstN = firstN;
       this.lastN = lastN;
       this.userName = userName;
       this.passcode = passcode;
-      this.accountsAll = new ArrayList<>();
+      this.accountToUser = new ArrayList<>();
       
-      // Create a new object, when object of Client is created
+      // When object of Client is created, create a new object
+      //Problem, two objects will be created in the process as you make an object of Client class to access the constructor input
    }
 
 
@@ -35,6 +34,11 @@ public class Client {
    public String getUserId(){
       return userName;
       
+   }
+
+   public void setUserId(String chgUserId){
+       userName = chgUserId;
+      // To make it possible for client to change username
    }
 
    public void setPasscode(String initialPasscode){
@@ -51,30 +55,38 @@ public class Client {
    }
 
    public void addCurrent(CurrentAccount currentAccount){
-      accountsAll.add(currentAccount);
+      accountToUser.add(currentAccount);
    }
 
    public void removeCurrent(CurrentAccount currentAccount){
-      accountsAll.remove(currentAccount);
+      accountToUser.remove(currentAccount);
    }
 
    public void addSaving(SavingsAccount savingAccount){
-      accountsAll.add(savingAccount);
+      accountToUser.add(savingAccount);
    }
 
    public void removeSaving(SavingsAccount savingsAccount){
-      accountsAll.remove(savingsAccount);
+      accountToUser.remove(savingsAccount);
    }
 
-   public List <Account> geAccountdetails(){
-      return accountsAll;
+   public String geAccountdetails()
+   {
+      for(int i = 0; i <= accountToUser.size(); i++) 
+      {
+         if(accountToUser.addCurrent().get(i) == true && accountToUser.addSaving().get(i) == true){
+            return getFirstAndLastName().concat("This account holder has both a savings account");
+         } else if(accountToUser.addCurrent().get(i) == true && accountToUser.addSaving().get(i) == false){
+            return getFirstAndLastName().concat(" - This account holder only has a Current account.");
+         } else if(accountToUser.addCurrent().get(i) == false && accountToUser.addSaving().get(i) == true) {
+            return getFirstAndLastName().concat(" - This account holder only has a Saving account.");
+         } else{
+           throw new IllegalArgumentException("Error there is no account assigned this account holder");
+         }
+      }
+         
+   }
+      // Account holder's Full name, whether they have a savings, current or both (think of FizzBuzz)
 
    }
-   
     
-   // Helpful Link:https://stackoverflow.com/questions/25952086/java-bank-program-how-to-let-customer-have-multiple-accounts
-
-
-
-    
-} 
