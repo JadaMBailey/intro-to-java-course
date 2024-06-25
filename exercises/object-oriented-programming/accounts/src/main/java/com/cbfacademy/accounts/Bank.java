@@ -1,5 +1,6 @@
 package com.cbfacademy.accounts;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -24,9 +25,46 @@ public class Bank {
         - contacting all current account holders if their account is in overdraft.
      * 
      */
-    public Map<Integer, Client> clients;
+    List <Account> allAccounts;
     // want to link accountnumber varaible but problem appears, Map<accountNumber, Client> clients
     
+    public void openCurentAcc(int inputBalance)
+    {
+        allAccounts = new <CurrentAccount> ArrayList();
+        // Unsure if it is allAccounts.add();
+    }
+
+    public void openSavingAcc(int inputBalance)
+    {
+        allAccounts = new <SavingsAccount> ArrayList();
+        // Unsure if it is allAccounts.add();
+    }
+
+    public void closeCurrentAcc(CurrentAccount currentAcc, String userId){
+        allAccounts.remove();
+    }
+    
+    public void closeSavingAcc(SavingsAccount savingAcc, String userId){
+        allAccounts.remove();
+    }
+
+    public String geAccountdetails(Client userId)
+   {
+    System.out.println("Accont Holder: " + Client.getFullName);
+      for(int i = 0; i <= allClients.size(); i++) 
+      {
+         if(allClients.getCurrent().get(i) == "current"|| "saving" || "current" && allClients.addSaving().get(i) == true){
+            return getFirstAndLastName().concat("This account holder has both a savings account");
+         } else if(allClients.addCurrent().get(i) == true && allClients.addSaving().get(i) == false){
+            return getFirstAndLastName().concat(" - This account holder only has a Current account.");
+         } else if(allClients.addCurrent().get(i) == false && allClients.addSaving().get(i) == true) {
+            return getFirstAndLastName().concat(" - This account holder only has a Saving account.");
+         } else{
+           throw new IllegalArgumentException("Error there is no account assigned this account holder");
+         }
+      }
+         
+   }
 
     public Bank(int accountNumber, double balance){
         super(accountNumber, balance);// Have no idea why it is red
@@ -36,6 +74,7 @@ public class Bank {
     public void uniqueClientRef(){
         Map<Integer, String> concateClientId;
         // use this method to check that account number and userId is unique with all accounts
+        // Not famillar with Map Framework, more research needed
     }
 
     public int allAccounts(){
@@ -45,6 +84,7 @@ public class Bank {
 
     }
 
+    
     
 
 }
