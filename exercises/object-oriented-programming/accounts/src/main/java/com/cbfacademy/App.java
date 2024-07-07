@@ -3,7 +3,7 @@ package com.cbfacademy;
 import java.io.IOException;
 
 import com.cbfacademy.accounts.Account;
-import com.cbfacademy.accounts.Bank;
+import com.cbfacademy.accounts.Bank1;
 import com.cbfacademy.accounts.CurrentAccount;
 import com.cbfacademy.accounts.SavingsAccount;
 
@@ -12,16 +12,15 @@ public class App
    
     public static void main(String[] args) 
     {
-      Bank jBailey = new Bank("Jada", "Bailey", "Jbkoala");
-      jBailey.openCurentAcc(1500, 32418675);
+      Bank1 jBailey = new Bank1("Jada", "Bailey", "Jbkoala");
+      jBailey.openAccount(1200, "saving account");
       jBailey.geAccountdetails(32418675);
-      jBailey.getTotalAccounts();
+      jBailey.getAllAccounts();
       
       
     }
 
 
-  
         // Need to find out why I can't input instance variable in place. 
      
         // Need to know how to create an current account object without assigning variable name to it, or create a reference which increases in ascending order
@@ -31,8 +30,7 @@ public class App
      
        
         
-     // this.accountNumber = Integer.parseInt((UUID.randomUUID().toString().replace("-", "")));
-      // Need to research what the UUID class is compared to Math class
+     
     
 
     

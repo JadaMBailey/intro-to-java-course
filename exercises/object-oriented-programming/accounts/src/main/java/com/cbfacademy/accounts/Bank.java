@@ -53,16 +53,16 @@ public class Bank {
         
      }
   
-     public void setUserId(String chgUserId){
+     public void setUserId(String chgUserId) throws NumberFormatException{
         try {
-            this.userId = chgUserId;
-        } catch (NumberFormatExceptionion e) {
-            // TODO: handle exception
-            System.out.println("exception " + e.getMessage());
-            ;
+            this.userId = chgUserId; //  // To make it possible for client to change username
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
          
-        // To make it possible for client to change username
+       
      }
 
 
@@ -124,6 +124,7 @@ public class Bank {
     }else{
         System.out.println("Account " + accountNumber + " has a saving account. No action required");
     }
+    }
 
     // System.out.println("Accont Holder: " + Client.getFullName);
     //   for(int i = 0; i <= allClients.size(); i++) 
@@ -139,7 +140,7 @@ public class Bank {
     //      }
     //   }
          
-   }
+   
 
     // public void uniqueClientRef(){
     //     Map<Integer, String> concateClientId;
@@ -149,7 +150,6 @@ public class Bank {
 
     public int getTotalAccounts(){
       int totalOfAccounts = allAccounts.size();
-      // Not sure why 'accountsAll' variable is underlined red.
         return totalOfAccounts;
 
     }
