@@ -1,11 +1,9 @@
 package com.cbfacademy.accounts;
 
+import java.nio.file.FileSystemException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
-import com.cbfacademy.App;
 
 
 public class Bank {
@@ -25,60 +23,132 @@ public class Bank {
         - contacting all current account holders if their account is in overdraft.
      * 
      */
-    List <Account> allAccounts;
-    // want to link accountnumber varaible but problem appears, Map<accountNumber, Client> clients
     
-    public void openCurentAcc(int inputBalance)
-    {
-        allAccounts = new <CurrentAccount> ArrayList();
-        // Unsure if it is allAccounts.add();
+    // want to link accountnumber varaible but problem appears, Map<accountNumber, Client> clients
+    private String firstN;
+    private String lastN;
+    private String userId;
+    private int balance;
+    private int accountNumber; // ?
+    List <Account> allAccounts;
+
+    public Bank(String firstN, String lastN, String userId){
+        this.firstN = firstN;
+        this.lastN = lastN;
+        this.userId = userId;
     }
 
-    public void openSavingAcc(int inputBalance)
+    public String getFullName(){
+        return this.firstN.concat(this.lastN);
+     }
+  
+     public void setFullName(String firstN, String lastN){
+        this.firstN = firstN;
+        this.lastN = lastN;
+        // Change of name e.g Marriage / deed poll
+     }
+  
+     public String getUserId(){
+        return this.userId;
+        
+     }
+  
+     public void setUserId(String chgUserId){
+        try {
+            this.userId = chgUserId;
+        } catch (NumberFormatExceptionion e) {
+            // TODO: handle exception
+            System.out.println("exception " + e.getMessage());
+            ;
+        }
+         
+        // To make it possible for client to change username
+     }
+
+
+    public void openCurentAcc(int initialInput, int accountNumber)
     {
+        this.balance += initialInput;
+        allAccounts = new <CurrentAccount> ArrayList();
+        // Unsure if it is allAccounts.add();
+       
+    }
+
+    public void openSavingAcc(int inputBalance, int accountNumber)
+    {
+        this.balance = inputBalance;
         allAccounts = new <SavingsAccount> ArrayList();
         // Unsure if it is allAccounts.add();
+
     }
 
     public void closeCurrentAcc(CurrentAccount currentAcc, String userId){
-        allAccounts.remove();
+        if(userId.equals(this.userId)){
+            allAccounts.remove(currentAcc); // Have no idea why red
+        } else{
+            throw new IllegalArgumentException("Wrong username entered. Please double check info and try again");
+        }
+        
     }
     
-    public void closeSavingAcc(SavingsAccount savingAcc, String userId){
-        allAccounts.remove();
+    public void closeSavingAcc(SavingsAccount savingAcc, String userId) throws IllegalAccessException{
+        if(userId.equals(this.userId)){
+            allAccounts.remove(savingAcc);
+            // think I need to make a getSavingAcc method to input in parenthesis
+        } else{
+            throw new IllegalArgumentException("Wrong username entered. Please double check info and try again");  
+        }
+       
+    }
+    
+
+    public void geAccountdetails(int accountNumber)
+    {
+    boolean hasCurrentAccount = false;
+    boolean hasSavingsAccount = false;
+   
+    for(Account account: allAccounts){
+        if(account instanceof CurrentAccount){
+            hasCurrentAccount = true;
+        }else if(account instanceof SavingsAccount){
+            hasSavingsAccount = true;
+        }else{
+            ;
+        }
     }
 
-    public String geAccountdetails(Client userId)
-   {
-    System.out.println("Accont Holder: " + Client.getFullName);
-      for(int i = 0; i <= allClients.size(); i++) 
-      {
-         if(allClients.getCurrent().get(i) == "current"|| "saving" || "current" && allClients.addSaving().get(i) == true){
-            return getFirstAndLastName().concat("This account holder has both a savings account");
-         } else if(allClients.addCurrent().get(i) == true && allClients.addSaving().get(i) == false){
-            return getFirstAndLastName().concat(" - This account holder only has a Current account.");
-         } else if(allClients.addCurrent().get(i) == false && allClients.addSaving().get(i) == true) {
-            return getFirstAndLastName().concat(" - This account holder only has a Saving account.");
-         } else{
-           throw new IllegalArgumentException("Error there is no account assigned this account holder");
-         }
-      }
+    if(!hasCurrentAccount && !hasSavingsAccount){
+       System.out.println("Account " + accountNumber + " not found. Action required");
+    } else if(hasCurrentAccount){
+        System.out.println("Account " + accountNumber + " has a current account. No action required");
+    }else{
+        System.out.println("Account " + accountNumber + " has a saving account. No action required");
+    }
+
+    // System.out.println("Accont Holder: " + Client.getFullName);
+    //   for(int i = 0; i <= allClients.size(); i++) 
+    //   {
+    //      if(allClients.getCurrent().get(i) == "current"|| "saving" || "current" && allClients.addSaving().get(i) == true){
+    //         return getFirstAndLastName().concat("This account holder has both a savings account");
+    //      } else if(allClients.addCurrent().get(i) == true && allClients.addSaving().get(i) == false){
+    //         return getFirstAndLastName().concat(" - This account holder only has a Current account.");
+    //      } else if(allClients.addCurrent().get(i) == false && allClients.addSaving().get(i) == true) {
+    //         return getFirstAndLastName().concat(" - This account holder only has a Saving account.");
+    //      } else{
+    //        throw new IllegalArgumentException("Error there is no account assigned this account holder");
+    //      }
+    //   }
          
    }
 
-    public Bank(int accountNumber, double balance){
-        super(accountNumber, balance);// Have no idea why it is red
-        
-    }
+    // public void uniqueClientRef(){
+    //     Map<Integer, String> concateClientId;
+    //     // use this method to check that account number and userId is unique with all accounts
+    //     // Not famillar with Map Framework, more research needed
+    // }
 
-    public void uniqueClientRef(){
-        Map<Integer, String> concateClientId;
-        // use this method to check that account number and userId is unique with all accounts
-        // Not famillar with Map Framework, more research needed
-    }
-
-    public int allAccounts(){
-      int totalOfAccounts = Client.accountsAll.size();
+    public int getTotalAccounts(){
+      int totalOfAccounts = allAccounts.size();
       // Not sure why 'accountsAll' variable is underlined red.
         return totalOfAccounts;
 
@@ -86,5 +156,6 @@ public class Bank {
 
     
     
+
 
 }

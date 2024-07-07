@@ -11,4 +11,5 @@ public interface ArraySorter {
      * @param endIndex The index of the end element
      */
     void sort(int[] arr, int startIndex, int endIndex);
+
 }

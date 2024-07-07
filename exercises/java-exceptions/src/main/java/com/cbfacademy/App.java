@@ -8,6 +8,18 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        
+     catch(ArithmeticException a) {
+    
     }
+    catch(Exception e) {
+        System.out.println("Something went wrong" + e);
+
+    }
+       
+    // Raghu extends Male implements Engineer, Plumber;
+
+        
+    }
+
 }

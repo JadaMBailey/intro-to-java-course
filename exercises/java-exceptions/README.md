@@ -22,6 +22,7 @@ try {
 } finally {
 
 }
+// it is legal but not allowed in Java
 ```
 
 ### Question 2
@@ -48,7 +49,7 @@ try {
 
 }
 ```
-
+// Will not compile, as it knows it will not be reached.
 ### Question 4
 
 ```java
@@ -58,10 +59,10 @@ A[0] = 0;
 
 The above code produces (choose 1):
 
-- [ ] an error
+- [ ] an error 
 - [ ] a checked exception
 - [ ] an unchecked exception
-- [ ] a compile error
+- [X ] a compile error 
 - [ ] no exception
 
 ### Question 5
@@ -71,8 +72,8 @@ The JVM starts running your program, but the JVM can't find the Java platform cl
 
 What happens (choose 1):
 
-- [ ] an error
-- [ ] a checked exception
+- [X] an error 
+- [ ] a checked exception 
 - [ ] an unchecked exception
 - [ ] a compile error
 - [ ] no exception
