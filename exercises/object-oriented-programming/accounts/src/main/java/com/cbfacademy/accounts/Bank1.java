@@ -1,8 +1,12 @@
 package main.java.com.cbfacademy.accounts;
 // why does the package need to include so many folders
 
+import java.nio.channels.AcceptPendingException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.cbfacademy.accounts.Account;
+import com.cbfacademy.accounts.SavingsAccount;
 
 public class Bank1
 {
@@ -10,8 +14,11 @@ public class Bank1
     private String firstN;
     private String lastN;
     private String userId;
-    List <Account> allAccounts;
+    List <Account> allAccounts = new <Account> ArrayList();
     // Where do I stare i want it to be kept in an ArrayList ' = new <Account> ArrayList()'
+
+    public static final String SAVINGACCOUNT = "Saving account";
+    public static final String CURRENTACCOUNT = "Current account";
 
     public Bank1(String firstN, String lastN, String userId){
         this.firstN = firstN;
@@ -48,13 +55,15 @@ public class Bank1
     
     public void openAccount(int initialInput, String accountType) throws IllegalArgumentException
     {
-        this.balance+= initialInput;
+        
         if(accountType == "saving account"){
-            openSavingAcc(inputBalance, accountNumber);
+           Account savingAccount = openSavingAcc(inputBalance, accountNumber);
+            allAccounts.add(savingAccount);
         // accountNumber generator (Note to self: need to research algorithm to create)
         // Need to find a way of assigning accountNumber when instance created for allAccounts
     }   else if (accountType == "current account"){
-        openCurentAcc(initialInput, accountNumber);
+       Account currentAccount = openCurentAcc(initialInput, accountNumber);
+       allAccounts.add(currentAccount);
     } else{
         throw new IllegalArgumentException("account type input is wrong, please try again");
     }
@@ -62,10 +71,13 @@ public class Bank1
 
     public void openMultiAccount(int initialInput, String savingAccountOpen, String currentAccountOpen) throws IllegalArgumentException
     {
-        this.balance+= initialInput;
+        
         if(savingAccountOpen == "saving account" && currentAccountOpen == "current account"){
-            openSavingAcc(inputBalance, accountNumber);
-            openCurentAcc(initialInput, accountNumber);
+           
+            Account savingAccount = openSavingAcc(inputBalance, accountNumber);
+            allAccounts.add(savingAccount);
+            Account currentAccount = openCurentAcc(initialInput, accountNumber);
+            allAccounts.add(currentAccount);
         } else{
             throw new IllegalArgumentException("account type input is wrong, please try again"); 
         }
@@ -73,20 +85,18 @@ public class Bank1
 
    
 
-    public void openSavingAcc(int inputBalance, int accountNumber)
+    public Account openSavingAcc(int inputBalance, int accountNumber)
     {
-        this.balance = inputBalance;
-        allAccounts = new <SavingsAccount> ArrayList();
+
+        return new SavingsAccount(accountNumber, balance, interestRate, SAVINGACCOUNT);
         // Unsure if it is allAccounts.add();
 
     }
 
-    public void openCurentAcc(int initialInput, int accountNumber)
+    public Account openCurentAcc(int initialInput, int accountNumber )
     {
-        this.balance += initialInput;
-        allAccounts = new <CurrentAccount> ArrayList();
         // Unsure if it is allAccounts.add();
-       
+       return new CurrentAccount(accountNumber, balance,overdraftLimit, CURRENTACCOUNT);
     }
 
 
@@ -124,8 +134,29 @@ public class Bank1
     }
     }
 
+    public int payDiv(){
+        // loop through accounts
+        // Extra - check for date condition 
+        // Extra - status on the account (anything other than active don't pay)
+        // get balance and increment by whatever ammount
+    }
 
+    // PayInterest -> Check if account 
+    public int payInterest(){
 
+        for(Account account: allAccounts){
+            if(account.getAccountType().equals(SAVINGACCOUNT)){
+                // add the interest
+                // for each 
+            }
+            
+        }
+        return 0;
+    }
+
+    // notify Current account if overdrawn - methods
+    // greater than 1 - fine 
+    // less than 0 - notify 
 
 
 }

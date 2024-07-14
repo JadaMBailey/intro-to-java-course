@@ -25,11 +25,11 @@ Analyse the following HTTP request:
     Connection: keep-alive
 ```
 
-1. What is the requested URL?
-2. Which version of HTTP is used?
-3. Does the browser ask for a persistent or a non-persistent connection?
+1. What is the requested URL? - "/martignon/index.html"
+2. Which version of HTTP is used? - Answer: 1.1
+3. Does the browser ask for a persistent or a non-persistent connection? - "keep alive" so persistent
 4. What is, in your opinion, the utility in indicating the type (and version) of browser used by
-the client in the HTTP Request?
+the client in the HTTP Request? -> Referring to the user agent. It helps with trouble-shooting, can narrow it down on whether there is a bug.
 
 **<ins>Exercise 2</ins>**
 
@@ -43,6 +43,11 @@ An HTTP client sends the following message:
 ```
 
 Write down two feasible responses of the HTTP server (only the status line)
+    HTTP/1.1 200 OK
+    HTTP/1.1 404 Not Found
+    HTTP/1.1 401 Unauthorised
+    HTTP/1.1 502 Bad Gateway
+    
 
 ## :spider_web: HTML
 

@@ -5,6 +5,7 @@ import java.util.List;
 public class Account {
 protected int accountNumber;
 // private allows you change code in less places
+protected String accountType;
 
 protected double balance;
 
@@ -26,6 +27,19 @@ public int getAccountNumber(){
    
     return accountNumber;
 }
+
+public String getAccountType(){
+   
+    return accountType;
+}
+
+public void setAccountType(String accountType){
+    
+     this.accountType = accountType;
+}
+
+
+
 
 public double deposit(double amount){
    return balance += amount;

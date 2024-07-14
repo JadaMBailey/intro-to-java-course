@@ -6,8 +6,8 @@ public class CurrentAccount extends Account{
 
     // automatically assume it's going to be private or protected
 
-    public CurrentAccount(int accountNumber, double balance, double overdraftLimit){
-       super(accountNumber,balance);
+    public CurrentAccount(int accountNumber, double balance, double overdraftLimit, String accountType){
+       super(accountNumber,balance, accountType);
        this.overdraftLimit = overdraftLimit;
     }
 
