@@ -3,6 +3,7 @@ package main.java.com.cbfacademy.accounts;
 
 import java.nio.channels.AcceptPendingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.cbfacademy.accounts.Account;
@@ -157,6 +158,7 @@ public class Bank1
     // notify Current account if overdrawn - methods
     // greater than 1 - fine 
     // less than 0 - notify 
+    Arrays[] a = new Arrays[6]; 
 
 
 }

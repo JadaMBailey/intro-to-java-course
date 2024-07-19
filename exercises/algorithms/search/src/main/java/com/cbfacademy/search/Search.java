@@ -9,4 +9,5 @@ public interface Search {
      * @return The array index of the target value, or -1 if the value is not found
      */
     int search(int[] sortedArray, int target);
+
 }
