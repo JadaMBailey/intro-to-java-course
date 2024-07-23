@@ -105,6 +105,13 @@ public class FlowControlExercises {
     }
 
     public List<Integer> reverse(ArrayList<Integer> numbers) {
+        // numbers = {1,2,3,4,5} -> {5,4,3,2,1} -> STACK System
+       int right = numbers.size()-1;
+       int left = 0;
+       ArrayList<Integer> target;
+       for(Integer num: numbers){
+        // Link to help: https://stackoverflow.com/questions/2137755/how-do-i-reverse-an-int-array-in-java
+       }
         // TODO - Implement this method such that
         //  - it takes an array list of integers
         //  - it returns the list in reverse order

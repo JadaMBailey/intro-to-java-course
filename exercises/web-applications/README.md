@@ -27,7 +27,7 @@ Analyse the following HTTP request:
 
 1. What is the requested URL? - "/martignon/index.html"
 2. Which version of HTTP is used? - Answer: 1.1
-3. Does the browser ask for a persistent or a non-persistent connection? - "keep alive" so persistent
+3. Does the browser ask for a persistent or a non-persistent connection? - "keep alive" so persistent. Think in terms of code, when resource is not closed? 
 4. What is, in your opinion, the utility in indicating the type (and version) of browser used by
 the client in the HTTP Request? -> Referring to the user agent. It helps with trouble-shooting, can narrow it down on whether there is a bug.
 
