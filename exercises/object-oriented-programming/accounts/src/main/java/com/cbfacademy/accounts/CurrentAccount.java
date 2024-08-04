@@ -20,9 +20,9 @@ public class CurrentAccount extends Account{
         return this.overdraftLimit;
     }
 
-    public void setOverdraftLimit(double newoOverdraftLimit){
-      if(newoOverdraftLimit >= 0){
-        this.overdraftLimit = newoOverdraftLimit;
+    public void setOverdraftLimit(double newOverdraftLimit){
+      if(newOverdraftLimit >= 0){
+        this.overdraftLimit = newOverdraftLimit;
       }
       
     }

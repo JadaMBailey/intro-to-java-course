@@ -1,5 +1,5 @@
-package main.java.com.cbfacademy.accounts;
-// why does the package need to include so many folders
+package com.cbfacademy.accounts;
+
 
 import java.nio.channels.AcceptPendingException;
 import java.util.ArrayList;
@@ -160,5 +160,24 @@ public class Bank1
     // less than 0 - notify 
     Arrays[] a = new Arrays[6]; 
 
+
+    public void closeCurrentAcc(CurrentAccount currentAcc, String userId){
+        if(userId.equals(this.userId)){
+            allAccounts.remove(currentAcc); // Have no idea why red
+        } else{
+            throw new IllegalArgumentException("Wrong username entered. Please double check info and try again");
+        }
+        
+    }
+    
+    public void closeSavingAcc(SavingsAccount savingAcc, String userId) throws IllegalAccessException{
+        if(userId.equals(this.userId)){
+            allAccounts.remove(savingAcc);
+            // think I need to make a getSavingAcc method to input in parenthesis
+        } else{
+            throw new IllegalArgumentException("Wrong username entered. Please double check info and try again");  
+        }
+       
+    }
 
 }
