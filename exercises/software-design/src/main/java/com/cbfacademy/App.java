@@ -2,7 +2,8 @@ package com.cbfacademy;
 
 public class App {
     public static void main(String[] args) {
-        DiceGame game = new DiceGame();
+        Game game = GameFactory.create();
+        // Changed 'DiceGame' to Game variable type
         String winner = game.play();
 
         if (winner == null) {

@@ -6,7 +6,8 @@ public class PlayerFactory {
      *
      * @return A new player.
      */
-    public static DicePlayer create() {
-        return new DicePlayer();
+    public static Player create() { // Previously had 'DicePlayer return type' 
+        // Not seen a class included 'DicePlayer' 
+        return new DicePlayer(); // Can not make instances of a interface, that's why we return 'DicePlayer' which is a concrete class
     }
 }

@@ -1,6 +1,6 @@
 package com.cbfacademy;
 
-public class DicePlayer {
+public class DicePlayer implements Player {
     private String name;
 
     public String getName() {
