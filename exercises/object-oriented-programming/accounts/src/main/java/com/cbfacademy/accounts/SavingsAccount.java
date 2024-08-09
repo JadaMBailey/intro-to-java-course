@@ -2,11 +2,13 @@ package com.cbfacademy.accounts;
 
 public class SavingsAccount extends Account {
 
-  protected double interestRate;
+  private double interestRate;
+  private double balance;
 
   public SavingsAccount(int accountNumber, double balance, double interestRate, String accountType) {
-    super(accountNumber, balance, accountType);
+    super(accountNumber, balance);
     this.interestRate = interestRate;
+    this.balance = balance;
   }
 
   public void applyInterest() {

@@ -1,13 +1,13 @@
 package com.cbfacademy.accounts;
 
 import java.util.List;
-
+// Need to research access type for classes purposes
 public class Account {
-protected int accountNumber;
+private int accountNumber;
 // private allows you change code in less places
-protected String accountType;
+private String accountType;
 
-protected double balance;
+private double balance;
 
 public Account(int accountNumber, double balance){
     this.accountNumber = accountNumber;
@@ -37,9 +37,6 @@ public void setAccountType(String accountType){
     
      this.accountType = accountType;
 }
-
-
-
 
 public double deposit(double amount){
    return balance += amount;

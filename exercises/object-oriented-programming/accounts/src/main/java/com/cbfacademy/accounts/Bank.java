@@ -5,23 +5,33 @@ import java.nio.channels.AcceptPendingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.time.*;
 
 import com.cbfacademy.accounts.Account;
 import com.cbfacademy.accounts.SavingsAccount;
 
-public class Bank1
+public class Bank
 {
 
     private String firstN;
     private String lastN;
     private String userId;
-    List <Account> allAccounts = new <Account> ArrayList();
-    // Where do I stare i want it to be kept in an ArrayList ' = new <Account> ArrayList()'
+    List <Account> allAccounts = new ArrayList<>();
+    
 
-    public static final String SAVINGACCOUNT = "Saving account";
-    public static final String CURRENTACCOUNT = "Current account";
+    private static final String SAVING_ACCOUNT = "Saving account";
+    public static String getSavingAccount() {
+        return SAVING_ACCOUNT;
+    }
 
-    public Bank1(String firstN, String lastN, String userId){
+    private static final String CURRENT_ACCOUNT = "Current account";
+    public static String getCurrentaccount() {
+        return CURRENT_ACCOUNT;
+    }
+
+   
+
+    public Bank(String firstN, String lastN, String userId){
         this.firstN = firstN;
         this.lastN = lastN;
         this.userId = userId;
@@ -53,30 +63,29 @@ public class Bank1
         }
     }
 
-    
     public void openAccount(int initialInput, String accountType) throws IllegalArgumentException
     {
         
-        if(accountType == "saving account"){
-           Account savingAccount = openSavingAcc(inputBalance, accountNumber);
-            allAccounts.add(savingAccount);
+        if(accountType.equals("saving account")){
+           Account SAVING_ACCOUNT = openSavingAcc(initialInput, accountNumber); // Why is accountNumber red? 
+            allAccounts.add(SAVING_ACCOUNT);
         // accountNumber generator (Note to self: need to research algorithm to create)
         // Need to find a way of assigning accountNumber when instance created for allAccounts
-    }   else if (accountType == "current account"){
-       Account currentAccount = openCurentAcc(initialInput, accountNumber);
+    }   else if (accountType.equals("current account")){
+       Account currentAccount = openCurentAcc(initialInput, accountNumber); // Why is accountNumber red? 
        allAccounts.add(currentAccount);
     } else{
         throw new IllegalArgumentException("account type input is wrong, please try again");
     }
     }
 
-    public void openMultiAccount(int initialInput, String savingAccountOpen, String currentAccountOpen) throws IllegalArgumentException
+    public void openMultiAccount(int initialInput, String SAVING_ACCOUNTOpen, String currentAccountOpen) throws IllegalArgumentException
     {
         
-        if(savingAccountOpen == "saving account" && currentAccountOpen == "current account"){
+        if(SAVING_ACCOUNTOpen == "saving account" && currentAccountOpen == "current account"){
            
-            Account savingAccount = openSavingAcc(inputBalance, accountNumber);
-            allAccounts.add(savingAccount);
+            Account SAVING_ACCOUNT = openSavingAcc(initialInput, accountNumber);
+            allAccounts.add(SAVING_ACCOUNT);
             Account currentAccount = openCurentAcc(initialInput, accountNumber);
             allAccounts.add(currentAccount);
         } else{
@@ -86,32 +95,30 @@ public class Bank1
 
    
 
-    public Account openSavingAcc(int inputBalance, int accountNumber)
+    public Account openSavingAcc(int initialInput, int accountNumber)
     {
-
-        return new SavingsAccount(accountNumber, balance, interestRate, SAVINGACCOUNT);
-        // Unsure if it is allAccounts.add();
-
+        return new SavingsAccount(accountNumber, balance, interestRate, SAVING_ACCOUNT);
     }
 
     public Account openCurentAcc(int initialInput, int accountNumber )
     {
-        // Unsure if it is allAccounts.add();
-       return new CurrentAccount(accountNumber, balance,overdraftLimit, CURRENTACCOUNT);
+       
+       return new CurrentAccount(accountNumber, getBalance(),getOverdraftLimit(), CURRENT_ACCOUNT);
+       // variables, 'balance' and 'overdraftLimit' was showing red, not sure what the issue is. So tried to change it to get method incase of inaccessibility issues.
     }
 
 
     public Account getAllAccounts()
     // displaying a report of all accounts held by the bank
     {   
-        for(int i = 0; i <= allAccounts.length; i++){
-            System.out.println(allAccounts[i]);
+        Account totalOfAccounts;
+        for(int i = 0; i <= allAccounts.size(); i++){
+          totalOfAccounts = System.out.println(allAccounts.get(i).getAccountType + getUserId());
         }
-        int totalOfAccounts = allAccounts.size();
         return totalOfAccounts;
     }
 
-    public void geAccountdetails(int accountNumber)
+    public void getAccountDetails(int accountNumber)
     {
     boolean hasCurrentAccount = false;
     boolean hasSavingsAccount = false;
@@ -140,25 +147,53 @@ public class Bank1
         // Extra - check for date condition 
         // Extra - status on the account (anything other than active don't pay)
         // get balance and increment by whatever ammount
-    }
-
-    // PayInterest -> Check if account 
-    public int payInterest(){
-
+        int dividends;
+        int dividendsAdded = 0;
         for(Account account: allAccounts){
-            if(account.getAccountType().equals(SAVINGACCOUNT)){
-                // add the interest
-                // for each 
+            if(account.deposit(5000) && LocalDateTime.of(2024, 08, 28, 23, 59) ){
+              dividendsAdded = getBalance() + dividends;
+            }else {
+                // nothing happens
             }
-            
-        }
-        return 0;
+            // Need to research how to put a time on when they can deposit money.
+        } 
+        return dividendsAdded;
+        // Need to search 
     }
 
-    // notify Current account if overdrawn - methods
-    // greater than 1 - fine 
-    // less than 0 - notify 
-    Arrays[] a = new Arrays[6]; 
+ 
+    public double payInterest(){
+        double result = 0;
+        double interestAdded;
+        for(Account account: allAccounts){
+            if(account.getAccountType().equals(SAVING_ACCOUNT)){
+                result = ((SavingsAccount) account).setInterestRate(interestAdded).applyInterest();
+                // applyInterest() in SavingsAccount does not return anything, should I change that?
+                
+            }
+            else {
+                result;
+                // I would prefer it to return a message "Not a Savings Account, no interest"
+            }
+        }
+        return result;
+    }
+
+    public String notifyOverdrawn(){
+         for (Account account: allAccounts){
+            if(account.getAccountType().equals(CURRENT_ACCOUNT) && account.getBalance() < 0){
+                System.out.println("Account " + account.getAccountNumber() + " is overdrawn.");
+            } else{
+               System.out.println("No notification needed.");
+            }
+
+         }
+        
+        // notify Current account if overdrawn - methods
+        // greater than 1 - no notfication, so fine 
+        // less than 0 - notify by sending message or email  
+        return "";
+    }
 
 
     public void closeCurrentAcc(CurrentAccount currentAcc, String userId){
