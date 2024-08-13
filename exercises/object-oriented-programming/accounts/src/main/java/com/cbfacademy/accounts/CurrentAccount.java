@@ -5,9 +5,11 @@ public class CurrentAccount extends Account{
     private double overdraftLimit;
     // automatically assume it's going to be private or protected
 
-    public CurrentAccount(int accountNumber, double balance, double overdraftLimit, String accountType){
+    public CurrentAccount(int accountNumber, double balance, String accountType){
        super(balance);
-       this.overdraftLimit = overdraftLimit;
+       if(balance > 1000){
+        this.setOverdraftLimit(1000);
+       }
     }
  
     public CurrentAccount(int accountNumber,double balance){

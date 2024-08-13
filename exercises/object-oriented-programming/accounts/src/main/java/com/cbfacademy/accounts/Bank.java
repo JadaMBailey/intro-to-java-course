@@ -5,7 +5,9 @@ import java.nio.channels.AcceptPendingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.time.*;
+import java.util.random.*;
 
 import com.cbfacademy.accounts.Account;
 import com.cbfacademy.accounts.SavingsAccount;
@@ -63,30 +65,36 @@ public class Bank
         }
     }
 
-    public void openAccount(int initialInput, String accountType) throws IllegalArgumentException
+    public void openAccount(int balance, String accountType) throws IllegalArgumentException
     {
+        Random rd = new Random();
+        int accountNumber;
         
         if(accountType.equals("saving account")){
-           Account SAVING_ACCOUNT = openSavingAcc(initialInput, accountNumber); // Why is accountNumber red? 
-            allAccounts.add(SAVING_ACCOUNT);
+         accountNumber = rd.nextInt(1000000);//challenge: Fetch incremented of account to database
+           Account SAVING_ACCOUNT = openSavingAcc(balance, accountNumber); 
+            allAccounts.add(SAVING_ACCOUNT);//challenge: would make database call 
         // accountNumber generator (Note to self: need to research algorithm to create)
-        // Need to find a way of assigning accountNumber when instance created for allAccounts
+        
     }   else if (accountType.equals("current account")){
-       Account currentAccount = openCurentAcc(initialInput, accountNumber); // Why is accountNumber red? 
+        accountNumber = rd.nextInt(1000000);
+       Account currentAccount = openCurentAcc(balance, accountNumber); // Why is accountNumber red? 
        allAccounts.add(currentAccount);
     } else{
         throw new IllegalArgumentException("account type input is wrong, please try again");
     }
     }
 
-    public void openMultiAccount(int initialInput, String SAVING_ACCOUNTOpen, String currentAccountOpen) throws IllegalArgumentException
+    public void openMultiAccount(int balance, String SAVING_ACCOUNTOpen, String currentAccountOpen) throws IllegalArgumentException
     {
+        Random rd = new Random();
+        int accountNumber;
         
         if(SAVING_ACCOUNTOpen == "saving account" && currentAccountOpen == "current account"){
-           
-            Account SAVING_ACCOUNT = openSavingAcc(initialInput, accountNumber);
+            accountNumber = rd.nextInt(1000000);
+            Account SAVING_ACCOUNT = openSavingAcc(balance, accountNumber);
             allAccounts.add(SAVING_ACCOUNT);
-            Account currentAccount = openCurentAcc(initialInput, accountNumber);
+            Account currentAccount = openCurentAcc(balance, accountNumber);
             allAccounts.add(currentAccount);
         } else{
             throw new IllegalArgumentException("account type input is wrong, please try again"); 
@@ -95,27 +103,31 @@ public class Bank
 
    
 
-    public Account openSavingAcc(int initialInput, int accountNumber)
+    public Account openSavingAcc(int balance, int accountNumber)
     {
-        return new SavingsAccount(accountNumber, balance, interestRate, SAVING_ACCOUNT);
+        
+        return new SavingsAccount(accountNumber, balance, SAVING_ACCOUNT);
     }
 
-    public Account openCurentAcc(int initialInput, int accountNumber )
+    public Account openCurentAcc(int balance, int accountNumber )
     {
        
-       return new CurrentAccount(accountNumber, getBalance(),getOverdraftLimit(), CURRENT_ACCOUNT);
+       return new CurrentAccount(accountNumber, balance, CURRENT_ACCOUNT);
        // variables, 'balance' and 'overdraftLimit' was showing red, not sure what the issue is. So tried to change it to get method incase of inaccessibility issues.
     }
 
 
-    public Account getAllAccounts()
+    public void getAllAccounts()
     // displaying a report of all accounts held by the bank
     {   
-        Account totalOfAccounts;
-        for(int i = 0; i <= allAccounts.size(); i++){
-          totalOfAccounts = System.out.println(allAccounts.get(i).getAccountType + getUserId());
+       
+        // for(int i = 0; i <= allAccounts.size(); i++){
+        //    System.out.println(allAccounts.get(i).getAccountType() + getUserId());
+        // }
+        for(Account acc: allAccounts){
+             System.out.println(acc.getAccountType() + getUserId());
         }
-        return totalOfAccounts;
+        
     }
 
     public void getAccountDetails(int accountNumber)

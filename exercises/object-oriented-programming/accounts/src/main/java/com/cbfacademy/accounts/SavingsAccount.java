@@ -5,9 +5,10 @@ public class SavingsAccount extends Account {
   private double interestRate;
   private double balance;
 
-  public SavingsAccount(int accountNumber, double balance, double interestRate, String accountType) {
+  public SavingsAccount(int accountNumber, double balance, String accountType) {
     super(accountNumber, balance);
-    this.interestRate = interestRate;
+    this.setInterestRate(2);
+    //this.interestRate = 2.0;
     this.balance = balance;
   }
 
@@ -25,6 +26,7 @@ public class SavingsAccount extends Account {
   public void setInterestRate(double interestRate) {
     if (interestRate >= 0) {
       this.interestRate = interestRate;
+      // can call set interest '2' method
     }
   }
 

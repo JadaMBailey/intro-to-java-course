@@ -3,7 +3,7 @@ package com.cbfacademy;
 import java.io.IOException;
 
 import com.cbfacademy.accounts.Account;
-import com.cbfacademy.accounts.Bank1;
+import com.cbfacademy.accounts.Bank;
 import com.cbfacademy.accounts.CurrentAccount;
 import com.cbfacademy.accounts.SavingsAccount;
 
@@ -12,7 +12,7 @@ public class App
    
     public static void main(String[] args) 
     {
-      Bank1 jBailey = new Bank1("Jada", "Bailey", "Jbkoala");
+      Bank jBailey = new Bank("Jada", "Bailey", "Jbkoala");
       jBailey.openAccount(1200, "saving account");
       jBailey.geAccountdetails(32418675);
       jBailey.getAllAccounts();
