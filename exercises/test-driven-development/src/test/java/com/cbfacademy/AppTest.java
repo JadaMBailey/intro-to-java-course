@@ -9,7 +9,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @DisplayName(value = "Basic Test Suite")
 public class AppTest {
-
+// Orginal Test Layout
     @Test
     @DisplayName("creates the app")
     public void createsAnApp() {
