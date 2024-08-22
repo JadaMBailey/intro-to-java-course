@@ -3,20 +3,32 @@ package com.cbfacademy;
 public class FizzBuzz {
 
 
-    public static String getFizzBuzz(int n){
-            if(n%15 == 0){
-                return "FizzBuzz";
-            } else if (n%3 == 0){
-                return "Fizz";
-            } else if (n%5 == 0){
-                return "Buzz";
-            } else if (n == {1,2,4,7} && n != 0) {
-                // I want to list all number and for it to output the same input
-            } {
-                return "NOT FizzBuzz ";
-            }
+        public static String getFizzBuzz(Integer n)
+        {
+             if(n%3 == 0 && n%5 == 0){
+                 return "FizzBuzz";
+             } else if (n%3 == 0){
+               return "Fizz";
+             } else if (n%5 == 0){
+                 return "Buzz";
+                } return n.toString();
+                }
+
     }
 
+    //     public static String getFizzBuzz(int n){
+    //         if(n%3 == 0 && n%5 == 0){
+    //             return "FizzBuzz";
+    //         } else if (n%3 == 0){
+    //             return "Fizz";
+    //         } else if (n%5 == 0){
+    //             return "Buzz";
+    //         } else if (n == {1,2,4,7} && n != 0) {
+    //             // I want to list all number and for it to output the same input
+    //         } {
+    //             return n;
+    //         }
+    // }
     
 
     // public static String getFizzBuzz(int n){
@@ -75,4 +87,4 @@ public class FizzBuzz {
     // }
     
 
-}
+
