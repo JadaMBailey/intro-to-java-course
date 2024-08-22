@@ -49,3 +49,5 @@ INSERT INTO Posts(ProfileId,PostDate,PostPicture,PostCaption) VALUES(2,'2020/03/
 INSERT INTO Comments(PostId,ProfileId,CommentDate,CommentText) VALUES(1,3,'2020/03/11','😍😍😍!');
 INSERT INTO Comments(PostId,ProfileId,CommentDate,CommentText) VALUES(3,3,'2020/04/02','🐝😊🥺😉😍😘😚😜😂😝😳😁😣😢');
 
+Select * From instabook;
+Show profiles
