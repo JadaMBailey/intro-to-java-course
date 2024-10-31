@@ -8,10 +8,9 @@ public class App {
 
     public static String concatenate(String word1, String word2, String word3) {
         // TODO: Write code that concatenates the input parameters and returns the result
-        return word1 + word2 + word3;
-        // Other option1: return word1.concat(word2).concat(word3);
+        return word1.concat(word2).concat(word3);
         // Other option2: return String.join(delimiter:"", word1, word2, word3);
-       // throw new RuntimeException("Not implemented");
+     throw new RuntimeException("Not implemented");
     }
 
     public static Boolean areEqual(String word1, String word2) {
